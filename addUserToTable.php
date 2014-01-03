@@ -1,5 +1,7 @@
 <?php	
 	include("addDaysToQuery.php");
+	//Adds a new user to the database
+	//prints out the query for inspection
 	function addUserToTable($number, $firstname, $lastname, $array) {
 		try {
 			$db = new PDO("mysql:dbname=uwcc;host=localhost", "root");
@@ -11,12 +13,12 @@
 			$query .= addDaysToQuery($array, $db);
 			$query .= ", '');";
 			print($query);
+			//executes query
 			$db->exec($query);
 		
 		} catch(PDOException $ex) {
-			//print($ex->getCode());
-			if($ex->getCode() == 23000) {
-			
+			//deals with query exception (if user has registered an account)
+			if($ex->getCode() == 23000) {			
 				print("Sorry, you have already registered an account!");
 			}
 		}	

@@ -1,6 +1,8 @@
 <?php
 	include("getSchedule.php");
 	include("addSchedule.php");
+	//runs when a user has accepted the friendship of another user
+	//stores friendship information in separate friendship table.
 	function acceptFriendship($number, $friendnumber) {
 		$array = getschedule($number, $db);
 		$friendarray = getschedule($friendnumber, $db);
@@ -17,12 +19,9 @@
 				$query .= ", $value";
 			}
 			$query .= ");";
-			$db->exec($query);
-			
-			
-			
+			$db->exec($query);						
 		} catch(PDOException $ex) {
-			
+			//TODO
 		}
 		
 

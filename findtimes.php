@@ -7,12 +7,12 @@ libxml_use_internal_errors(true);
 	function findtimes($department, $coursenumber, $section, $timepage) {
 		
 		$html = file_get_contents($timepage); 
-		//$html = utf8_encode($pre);
 		$dom = new DOMDocument();
 		$dom->loadHTML($html);
 		$tables = $dom -> getElementsByTagName("table");
 		
 		// looks through all the tables, uses i to keep track of the table
+		// very messy syntactical php messiness
 		for($i = 0; $i < $tables->length; $i++) {
 			$children = $tables->item($i) -> childNodes;
 			foreach($children as $child1) {
@@ -25,7 +25,6 @@ libxml_use_internal_errors(true);
 										if(strtolower($child4 -> nodeName) == "a" && $child4 ->hasAttribute("name")) {
 											$decoded = preg_replace("/\p{Z}+/u", " ", $child4->textContent);
 											preg_match("/[0-9]+/", $decoded, $number);
-											//print($number[0]);
 											if($number[0] == $coursenumber) {
 												// Here we verify that the course number is matched, and now we move on 
 												// to find the next table in the tables variable, where the time will be contained.

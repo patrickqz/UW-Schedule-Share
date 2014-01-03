@@ -16,34 +16,29 @@ libxml_use_internal_errors(true);
 				// examines the child nodes of each list tag. 
 				$children = $tag->childNodes;
 				
-				foreach($children as $child) {
-					
+				foreach($children as $child) {					
 					if($child->nodeName == "a") {
 						$link = $child->getAttribute("href");
 						if(substr($link, 0, 1) != "#") {
 							$new_str = $child->textContent;
-							//TESTING, to determine how many departments actually exist.
+							//determines how many departments actually exist.
 							$pattern = "/\([A-Z|\s|\X]*\)/u";
 							preg_match($pattern, $new_str, $out);
 							
 							//CHERISH THIS
 							$new = preg_replace("/\p{Z}/u", " ", $out);
-							
+							//if department is found, continues with process
 							if($new) {
-								
-								
-								
 								$matcher = "(" . $department . ")";
 								if($matcher == $new[0]) {
-									//print("FOUND");
 									$timepage = $departmentpage . "/" . $link;
+									//calls the next 
 									findtimes($department, $coursenumber, $section, $timepage);
 									// Have to add return to end function, 
 									// otherwise there may be duplicates, and findtimes may be called
 									// more than once. 
 									return;
-								}
-															
+								}								
 							}
 							
 						}
