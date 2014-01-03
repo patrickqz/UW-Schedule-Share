@@ -18,11 +18,18 @@ To test, open up submitclasses.html on a machine that has both Apache and MySQL
 some sample classes to test are: 
 (written in: DEPARTMENT COURSENUMBER SECTION)
 (all letters much be caps)
+
 CSE 312 A
+
 CSE 312	AA
+
 PHIL 240 A
+
 PHIL 240 AB
+
 CSE 344 A
+
 CSE 344 AB
+
 CSE 390 A
 
