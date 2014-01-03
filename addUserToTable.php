@@ -12,7 +12,6 @@
 			$query = "INSERT INTO users VALUES ($number, $firstname, $lastname ";
 			$query .= addDaysToQuery($array, $db);
 			$query .= ", '');";
-			print($query);
 			//executes query
 			$db->exec($query);
 		
